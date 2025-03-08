@@ -1,25 +1,58 @@
+# Nathan Parker
+# 03/07/25
 # Program #3: US_Population
+
+
+# define the main function
 def main():
-    # Have the user input (using a loop) various information that contains three pieces of data: 
-    # year, name of state, and population.  
-    # Store all of this information in a list of lists.  For example it might be stored like this:
-    
-    # [[2010, "Maine", 1987435], [2010,"Minnesota",6873202], [2011, "Iowa", 3421988]]
-    all_entered_values = []
 
-    # Now have the user enter a year. 
-    
-    # The program will add the populations from all states in the list of list for that year only.
-    # Pass the list and year to the sum_population_for_year
+    # set answer to yes
+    answer = 'yes'
 
-def sum_population_for_year(all_entered_values, year_to_sum):
-    # Loop through and sum the populations for the appropriate year. 
-    # e.g. for the list on line 7 the total would be 8,860,637 if the user enterd 2010 for the year to sum,
-    # or 3,421,988 if they enterd 2011 for the year to sum.
+    # create and empty list
+    data = []
 
-    # print the totalled population
+    # set row to 0
+    row = 0
 
+    # get data from the user and add it to the list
+    while answer == 'yes' or answer == 'Yes':
 
-# Call the main function.
+        # add a row to the list
+        data.append([0,0,0])
+
+        # fill the row with data from the user
+        data[row][0] = int(input('Enter the year: '))
+        data[row][1] = str(input('Enter the state: '))
+        data[row][2] = int(input('Enter the population: '))
+
+        # increase row by one so that the program can fill more rows in the list
+        row += 1
+
+        # ask the user if they want to continue entering data
+        answer = input('Would you like to enter more information? ("yes" or "no"): ')
+
+    # get the year that needs to be summed from the user
+    year = int(input('Enter a year: '))
+
+    # define variables row_test and total
+    row_test = 0
+    total = 0
+
+    # loop over the number of rows in the list
+    for loop in range(row):
+
+        # add the population for the correct year to the total
+        if data[row_test][0] == year:
+            total += data[row_test][2]
+
+        # increase row_test by 1 so that the program can look at the next row
+        row_test += 1
+
+    # display the total
+    print(f'The total population for all states in {year} is {total:,}.')
+
+# call the main function
 if __name__ == '__main__':
     main()
+
